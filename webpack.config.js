@@ -1,20 +1,21 @@
-const path = require('path')
+import path from 'path'
+const __dirname = path.resolve()
 
 // plugins
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const htmlWebpackPlugin = require('html-webpack-plugin')
-const vueLoaderPlugin = require('vue-loader/lib/plugin')
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import htmlWebpackPlugin from 'html-webpack-plugin'
+import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
 
 const mode = process.env.NODE_ENV || 'development'
-console.log(mode, '---mode')
-module.exports = {
+
+export default {
   mode,
   entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'main-[hash:18].js'
   },
-  name: '6666',
+  name: 'demo',
   devServer: {
     port: 7001,
     open: true,
@@ -41,7 +42,7 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html'
     }),
-    new vueLoaderPlugin(),
+    new VueLoaderPlugin(),
     // 每次构建清空dist
     new CleanWebpackPlugin(),
   ]

@@ -1,9 +1,4 @@
 #!/usr/bin/env node
+import { runServer } from '../lib/server.js'
+runServer()
 
-console.log('main')
-
-
-
-const createServer = require('../lib/server.js')
-createServer()
-console.log(createServer,"--cer")

@@ -3,23 +3,19 @@
 
 </template>
 <script>
+import {io} from 'socket.io-client'
 export default {
   name: 'demo',
 
   mounted() {
-    const ws = new WebSocket('ws://localhost:3000')
-    ws.onopen = function(evt) {
-      console.log('Connection open ...')
-
-      ws.send(JSON.stringify({
-        type: 'init',
-        content: 'form client init'
-      }))
-
-      ws.onmessage = function(event) {
-        console.log(JSON.parse(event))
-      }
-    }
+    const socket = io('http://localhost:3000')
+    socket.on('connect', (arg) => {
+      console.log('connect', arg)
+    })
+    socket.on('init', (arg) => {
+      console.log('init', arg)
+    })
+    socket.emit('runScript', { run: 'npm run dev'})
   },
 }
 </script>
