@@ -4,7 +4,7 @@ const __dirname = path.resolve()
 // plugins
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import htmlWebpackPlugin from 'html-webpack-plugin'
-import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
+import {VueLoaderPlugin} from 'vue-loader'
 
 const mode = process.env.NODE_ENV || 'development'
 

@@ -1,12 +1,20 @@
 <template>
-<div class="demo">demo for webpack-dev-server</div>
+<div class="demo">
+</div>
+<button v-on:click="handleClick">click</button>
 
 </template>
 <script>
 import {io} from 'socket.io-client'
 export default {
   name: 'demo',
-
+  data() {
+    return {
+      color: '#f0f'
+    }
+  },
+  emits: {
+  },
   mounted() {
     const socket = io('http://localhost:3000')
     socket.on('connect', (arg) => {
@@ -17,10 +25,15 @@ export default {
     })
     socket.emit('runScript', { run: 'npm run dev'})
   },
+  methods: {
+    handleClick() {
+      console.log('click')
+    }
+  }
 }
 </script>
 <style lang="scss">
   .demo {
-    color: #f00;
+    color: v-bind(color);
   }
 </style>
