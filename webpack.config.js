@@ -15,7 +15,7 @@ export default {
     path: path.resolve(__dirname, "dist"),
     filename: 'main-[hash:18].js'
   },
-  name: 'demo',
+  name: 'npm-ui',
   devServer: {
     port: 7001,
     open: true,
@@ -29,7 +29,8 @@ export default {
   module:{
     rules:[
       {test:/\.vue$/,use:"vue-loader"},
-      {test:/\.scss$/,use:["style-loader","css-loader", "sass-loader"]}
+      {test:/\.scss$/,use:["style-loader","css-loader", "sass-loader"]},
+      {test:/\.svg$/,use: ["file-loader"]}
     ]
   },
   resolve: {

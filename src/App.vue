@@ -1,24 +1,27 @@
 <template>
-<div>
-  <div id="tele"></div>
-  <Demo></Demo>
-</div>
+<Layout>
+  <template v-slot>
+    <div class="contain">body</div>
+  </template>
+
+</Layout>
 </template>
 <script setup>
-import Demo from '@/views/demo.vue'
-// export default {
-//   name: 'App',
-//   components: {
-//     // Demo
-//   }
-// }
+  import Layout from '@/layouts/default.vue' 
+  import {socket} from '@/api/socket.io/index.js'
+  import { useConfigStore } from '@/stores/config.js'
+  let config = useConfigStore()
+  socket.on('init', (arg) => {
+    config.initConfig(arg?.data)
+  })
 </script>
-<script>
-  export default {
-    name: 'App',
-    mounted() {
-      console.log('666')
-    }
+
+<style lang="scss">
+  body {
+    position: relative;
+    margin: 0;
   }
-</script>
-<style></style>
+  .contain {
+    height: 500px;
+  }
+</style>
