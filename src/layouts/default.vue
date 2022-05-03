@@ -9,7 +9,7 @@
   <hr />
 
   <footer>
-    <a href="https://github.com/posva/pinia">
+    <a href="https://github.com/zhuangdagg/npm-ui">
       <svg class="logo" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           fill-rule="evenodd"
@@ -44,11 +44,6 @@
       position: relative;
       top: 4px;
       width: 120px;
-    }
-    .login {
-      // line-height: 80px;
-      color: #fff;
-      font-size: 22px;
     }
   }
   footer {

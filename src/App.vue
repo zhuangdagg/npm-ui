@@ -25,5 +25,6 @@
   }
   .contain {
     height: 500px;
+    background-image: url('@/assets/svg/npm-ui.svg');
   }
 </style>

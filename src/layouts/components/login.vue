@@ -1,10 +1,10 @@
 <template>
   <div class="login">
-    <div v-if="!status.isLogin" @click="loginIn">Login in</div>
+    <div v-if="!status.isLogin" @click="loginIn" class="title">Login in</div>
     <el-dropdown v-else trigger="click"
       @command="loginOut"
     >
-      <div>{{ loginForm.username }}</div>
+      <div class="title username">{{ loginForm.username }}</div>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item command="out">Login out</el-dropdown-item>
@@ -23,7 +23,7 @@
           <el-input v-model="loginForm.username" placeholder="账号" />
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input v-model="loginForm.password" type="密码" placeholder="密码" />
+          <el-input v-model="loginForm.password" type="password" placeholder="密码" />
         </el-form-item>
         <el-form-item label="邮箱：" prop="email">
           <el-input v-model="loginForm.email" placeholder="邮箱" />
@@ -79,35 +79,34 @@
       formRef.validate(valid => {
         if(!valid) return 
         if(status.isFirst) {
-          console.log('login', loginForm.username)
           status.buttonLoading = true
           // emit login message
-          // socket.emit('login', loginForm)
+          socket.emit('login', loginForm)
           // listen success callback
-
-          // socket.once('login', (arg) => {
-          //   if(1) {
-          //     // success
-          //     status.isFirst = false
-          //     status.buttonLoading = false
-          //   } else {
-          //     status.buttonLoading = false
-          //   }
-          // })
-          setTimeout(() => {
-            status.isFirst = false
-            status.buttonLoading = false
-          }, 3000)
-          
+          socket.once('login', (arg) => {
+            console.log(arg, '--login')
+            if(arg.stderr) {
+              status.buttonLoading = false
+              // error msg
+              console.log('信息有误，请重新输入')
+            } else {
+              // success
+              status.isFirst = false
+              status.buttonLoading = false
+            }
+          })
+          socket.once('loginError', (arg) => {
+            console.log(arg, "--loginError")
+          })       
         } else {
           // emit OTPassword
-          // socket.emit('OTPassword', { OTPassword: OTPassword.value })
-          // socket.on('login', (arg) => {
-          //   status.isLogin = true
-          // })
-          status.isLogin = true
-          status.dialogVisible = false
-
+          status.buttonLoading = true
+          socket.emit('OTPassword', { OTPassword: loginForm.OTPassword })
+          socket.once('login', (arg) => {
+            status.isLogin = true
+            status.dialogVisible = false
+            status.buttonLoading = false
+          })     
         }
       })
       
@@ -137,14 +136,31 @@
       attrs: ['whoami']
     }).then(res => {
       let { data, stdout } = res
-      if( data || stdout) {
+      data = data || stdout
+      if(data) {
         status.isLogin = true
-        loginForm.username = data || stdout
-        config.setLoginStatus(data || stdout)
+        loginForm.username = data
+        config.setLoginStatus(data)
       }
     }).catch(err => {
       console.log(err, '--whoami error')
     })
   })()
 </script>
-<style lang="scss"></style> 
+<style lang="scss">
+$hoverColor: rgb(26, 190, 193);
+.login {
+  .title {
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    &.username {
+      border-bottom: 1px solid #fff;
+      &:hover {
+        color: $hoverColor;
+        border-bottom: 1px solid 
+      }
+    }
+  }
+}
+</style> 
