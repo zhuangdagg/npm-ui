@@ -15,6 +15,9 @@ export const useConfigStore = defineStore({
   actions: {
     initConfig(config) {
       this.config = config || {}
+    },
+    setLoginStatus(status) {
+      this.isLogin = Boolean(status)
     }
   }
 })

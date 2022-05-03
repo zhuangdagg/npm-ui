@@ -14,6 +14,8 @@
   socket.on('init', (arg) => {
     config.initConfig(arg?.data)
   })
+
+ 
 </script>
 
 <style lang="scss">

@@ -33,18 +33,22 @@
 <style lang="scss">
   header {
     display: flex;
-    padding: 0 10px;
+    padding: 0 20px;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     min-width: 400px;
-    height: 100px;
+    height: 60px;
     background-color: black;
     & > .logo {
-      width: 160px;
+      position: relative;
+      top: 4px;
+      width: 120px;
     }
     .login {
-      line-height: 100px;
+      // line-height: 80px;
       color: #fff;
+      font-size: 22px;
     }
   }
   footer {

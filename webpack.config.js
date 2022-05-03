@@ -30,6 +30,7 @@ export default {
     rules:[
       {test:/\.vue$/,use:"vue-loader"},
       {test:/\.scss$/,use:["style-loader","css-loader", "sass-loader"]},
+      {test:/\.css$/,use:["style-loader","css-loader"]},
       {test:/\.svg$/,use: ["file-loader"]}
     ]
   },

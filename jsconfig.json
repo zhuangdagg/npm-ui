@@ -1,3 +1,10 @@
 {
-  
+  "compilerOptions": {
+    "types": ["element-plus/global"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules", "dist"]
 }
