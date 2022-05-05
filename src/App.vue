@@ -1,10 +1,11 @@
 <template>
+<el-scrollbar height="100%">
 <Layout>
-  <template v-slot>
+  <!-- <template v-slot>
     <div class="contain">body</div>
-  </template>
-
+  </template> -->
 </Layout>
+</el-scrollbar>
 </template>
 <script setup>
   import Layout from '@/layouts/default.vue' 
@@ -13,6 +14,7 @@
   let config = useConfigStore()
   socket.on('init', (arg) => {
     config.initConfig(arg?.data)
+    console.log('init npm config!')
   })
 
  

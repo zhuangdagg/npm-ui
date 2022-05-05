@@ -1,4 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
+import { ref, reactive } from 'vue'
 
 export const useConfigStore = defineStore({
   id: 'config',
@@ -13,8 +14,8 @@ export const useConfigStore = defineStore({
   },
 
   actions: {
-    initConfig(config) {
-      this.config = config || {}
+    initConfig(config = {}) {
+      this.config = config
     },
     setLoginStatus(status) {
       this.isLogin = Boolean(status)
@@ -22,6 +23,6 @@ export const useConfigStore = defineStore({
   }
 })
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
-}
+// if (import.meta.hot) {
+//   import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
+// }

@@ -149,16 +149,17 @@
 </script>
 <style lang="scss">
 $hoverColor: rgb(26, 190, 193);
+$white: rgb(225, 228, 232);
 .login {
   .title {
-    color: #fff;
+    color: $white;
     font-size: 18px;
     cursor: pointer;
     &.username {
-      border-bottom: 1px solid #fff;
+      // border-bottom: 1px solid $white;
       &:hover {
-        color: $hoverColor;
-        border-bottom: 1px solid 
+        // color: $hoverColor;
+        text-decoration: underline;
       }
     }
   }

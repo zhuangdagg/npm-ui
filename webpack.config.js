@@ -29,7 +29,15 @@ export default {
   module:{
     rules:[
       {test:/\.vue$/,use:"vue-loader"},
-      {test:/\.scss$/,use:["style-loader","css-loader", "sass-loader"]},
+      {test:/\.scss$/,use:["style-loader","css-loader", "sass-loader", {
+        loader: 'style-resources-loader',     // 引入全局样式 variables、mixin
+        options: {
+          patterns: [
+            'src/style/mixin.scss',
+            'src/style/variables.scss'
+          ]
+        }
+      }]},
       {test:/\.css$/,use:["style-loader","css-loader"]},
       {test:/\.svg$/,use: ["file-loader"]}
     ]

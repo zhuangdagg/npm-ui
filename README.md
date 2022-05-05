@@ -1,2 +1,2 @@
 # npm-ui
-a tool for npm
+a visual tool for npm
