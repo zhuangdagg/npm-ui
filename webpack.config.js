@@ -15,7 +15,7 @@ export default {
     path: path.resolve(__dirname, "dist"),
     filename: 'main-[hash:18].js'
   },
-  name: 'npm-ui',
+  name: '[Beta]npm-ui',
   devServer: {
     port: 7001,
     open: true,

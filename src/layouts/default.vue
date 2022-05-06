@@ -19,8 +19,6 @@ import Main from './components/main.vue';
 <style lang="scss">
   header {
     display: flex;
-    position:sticky;
-    top: 0;
     padding: 0 20px;
     flex-direction: row;
     justify-content: space-between;
